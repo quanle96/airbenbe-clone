@@ -1,0 +1,12 @@
+.flex-row-space-btw{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.button-hover:hover{
+    box-shadow: -2px 2px 4px 0 rgba(83, 83, 83, 0.342);
+}
+body{
+    background-color: rgb(190, 190, 190);
+}

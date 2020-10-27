@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import Navbar from './component/navbar'
 class Home extends React.Component {
 
     render(){
         return (
-            <div>Wellcome</div>
+            <div>
+                <Navbar/>
+            </div>
         );
     };
 }

@@ -1,0 +1,18 @@
+.button-search {
+    border: rgb(117, 117, 117) solid 1px;
+    border-radius:  90px;
+    height: 50px;
+}
+.AwesomeIcon-search-wraper{
+    height: 38px;
+    width: 38px;
+    background-color: red;
+    color: white;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+.button-search-text{
+    padding-left: 20px;
+}

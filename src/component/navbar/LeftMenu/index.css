@@ -1,0 +1,35 @@
+.menuButton {
+  border-radius: 90px;
+  height: 50px;
+}
+.language {
+  display: block;
+  height: 16px;
+  width: 16px;
+  fill: currentColor;
+}
+.language-wraper {
+  width: 30px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.user-icon {
+  display: block;
+  height: 30px;
+  width: 30px;
+  fill: currentColor;
+}
+.user-wraper{
+  width: 66px;
+  padding-left: 10px;
+}
+.fa-bars{
+  height: 20px;
+  width: 20px !important;
+}
+.beComeOwner{
+  padding-left: 16px;padding-right: 16px;
+}
+.LeftMenu{
+  width: 326px;
+}
