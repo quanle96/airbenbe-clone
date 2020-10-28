@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
 import "./index.css";
 
 function SearchIcon(props) {
@@ -14,17 +15,25 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        width: 300
+      width: 300,
     };
   }
   render() {
     return (
       <div>
         <button
-          className='button-search button-hover flex-row-space-btw'
+          //className='button-search button-hover flex-row-space-btw'
+          className={classNames(
+            "button-search",
+            "button-hover",
+            "flex-row-space-btw",
+            { "button-border": true }
+          )}
           style={{ width: this.state.width }}
         >
-          <div className='button-search-item button-search-text'>Bắt đầu tìm kiếm</div>
+          <div className='button-search-item button-search-text'>
+            Bắt đầu tìm kiếm
+          </div>
           <SearchIcon className='button-search-item' />
         </button>
       </div>

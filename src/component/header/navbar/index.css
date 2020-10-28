@@ -1,0 +1,20 @@
+.logo-svg {
+  width: 102px;
+  height: 32px;
+  display: block;
+  color: aqua;
+}
+.logo-warper{
+  padding-right: 80px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.navbar-bg{
+  background-color: white;
+}

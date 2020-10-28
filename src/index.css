@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 .flex-row-space-btw{
     display: flex; 
     flex-direction: row;
@@ -7,6 +8,20 @@
 .button-hover:hover{
     box-shadow: -2px 2px 4px 0 rgba(83, 83, 83, 0.342);
 }
+.button-background-clear{
+    background: none;
+}
+.button-background-clear:hover{
+    background: fixed;
+    background-color: rgba(175, 175, 175, 0.4);
+}
 body{
     background-color: rgb(190, 190, 190);
+    margin: 0px !important;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+}
+button{
+    font-family:'Nunito Sans', sans-serif;
+    font-size: 14px;
 }

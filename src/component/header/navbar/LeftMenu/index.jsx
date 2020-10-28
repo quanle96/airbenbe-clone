@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faBars } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
-import classNames from "classnames"; 
+import classNames from "classnames";
 function BeComeOwner(props) {
   return <div className='beComeOwner'>Trở thành chủ nhà</div>;
 }
@@ -44,7 +44,13 @@ function UserMenu(props) {
 function MenuButton(props) {
   const bd = props.isBorderButton ? "rgb(117, 117, 117) solid 1px" : "none";
   return (
-    <button className={classNames('menuButton', {'button-hover': props.isBorderButton } )}style={{ border: bd }}>
+    <button
+      className={classNames("menuButton", {
+        "button-hover": props.isBorderButton,
+        "button-background-clear": !props.isBorderButton,
+        "button-border": props.isBorderButton
+      })}
+    >
       {props.children}
     </button>
   );
