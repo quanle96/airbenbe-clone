@@ -42,7 +42,6 @@ function UserMenu(props) {
 }
 
 function MenuButton(props) {
-  const bd = props.isBorderButton ? "rgb(117, 117, 117) solid 1px" : "none";
   return (
     <button
       className={classNames("menuButton", {
