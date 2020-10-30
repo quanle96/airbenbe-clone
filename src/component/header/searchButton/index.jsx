@@ -22,7 +22,7 @@ class Search extends React.Component {
     return (
       <div>
         <button
-          //className='button-search button-hover flex-row-space-btw'
+          onClick={this.props.clickHandle}
           className={classNames(
             "button-search",
             "button-hover",

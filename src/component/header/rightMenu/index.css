@@ -12,9 +12,9 @@
   fill: currentColor;
 }
 .language-wraper {
-  width: 30px;
-  padding-left: 16px;
-  padding-right: 16px;
+  width: 54px;
+  padding-left: 10px;
+  padding-right: 5px;
 }
 .user-icon {
   display: block;
@@ -24,17 +24,19 @@
   color: #717171 !important;
 }
 .user-wraper {
-  width: 53px;
-  padding-left: 10px;
+  width: 60px;
+  padding-left: 6px;
 }
 .fa-bars {
-  height: 20px;
+  height: 15px;
   width: 20px !important;
 }
 .beComeOwner {
-  padding-left: 16px;
-  padding-right: 16px;
+  min-width: 135px;
 }
-.LeftMenu {
+.rightMenu {
   width: 326px;
+}
+.button-background-clear{
+  background: none;
 }

@@ -1,8 +1,10 @@
 import React from "react";
-import Search from "../searchButton";
 import RightMenu from "../rightMenu";
+import Midmenu from "../midmenu";
 import "./index.css";
-import Headerbar from "../headerbar";
+import { Col, Row } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
 function Logo(props) {
@@ -14,37 +16,68 @@ function Logo(props) {
     </div>
   );
 }
-function NormalBar(props) {
+function SearchIcon(props) {
   return (
-    <div className='navbar navbar-bg'>
-      <Logo color='#FF385C' />
-      <Search clickHandle={() => props.clickHandle()} />
-      <RightMenu />
+    <div className='AwesomeIcon-search-wraper-2'>
+      <FontAwesomeIcon icon={faSearch} />
     </div>
   );
 }
-class Navbar extends React.Component {
+function MenuButton(props) {
+  return (
+    <button style={{width:props.width}}
+      className={classNames("menuButton", "button-hover","menuButton-more-height")}
+    >
+      {props.children}
+    </button>
+  );
+}
+function SearchMenu(props) {
+  return (
+    <div className='SearchMenu'>
+      <MenuButton width="270px">
+        <div>Địa điểm</div>
+      </MenuButton>
+      <MenuButton width="178px">
+        <div>Nhận phòng</div>
+      </MenuButton>
+      <MenuButton width="178px">
+        <div>Trả phòng</div>
+      </MenuButton>
+      <MenuButton width="170px">
+        <div>Khách</div>
+      </MenuButton>
+      <SearchIcon />
+    </div>
+  );
+}
+class Headerbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showFull: false,
     };
   }
-
-  searchClickHandle = () => {
-    this.setState({ showFull: true });
-    return;
-  };
+  
   render() {
     return (
-      <div className={classNames({"expained-nav":this.state.showFull})}>
-        {this.state.showFull ? (
-          <Headerbar isTransparent={false} />
-        ) : (
-          <NormalBar clickHandle={() => this.searchClickHandle()} />
-        )}
+      <div className={classNames('navbar','navbar-clear-bg' )}>
+        <Row className="navbar-top">
+          <Col xs="4">
+            <Logo color={this.props.isTransparent? "white":"red"} />
+          </Col>
+          <Col xs="4">
+            <Midmenu/>
+          </Col>
+          <Col xs="4">
+            <RightMenu />
+          </Col>
+        </Row>
+        <Row className="headerbar-row2">
+          <SearchMenu/>
+        </Row>
+        {/* <Row className="navbar-bot"><Search /></Row> */}
       </div>
     );
   }
 }
-export default Navbar;
+export default Headerbar;
