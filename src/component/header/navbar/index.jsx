@@ -1,9 +1,11 @@
 import React from "react";
-import Search from "../searchButton";
-import RightMenu from "../rightMenu";
-import "./index.css";
-import Headerbar from "../headerbar";
 import classNames from "classnames";
+
+import Search from "../SearchButton";
+import RightMenu from "../RightMenu";
+import Headerbar from "../Headerbar";
+
+import "./Navbar.css";
 
 function Logo(props) {
   return (
@@ -14,15 +16,25 @@ function Logo(props) {
     </div>
   );
 }
+
 function NormalBar(props) {
   return (
     <div className='navbar navbar-bg'>
       <Logo color='#FF385C' />
-      <Search clickHandle={() => props.clickHandle()} />
+      <Search clickHandle={props.clickHandle} />
       <RightMenu />
     </div>
   );
 }
+
+function GrayBg(props) {
+  return (
+    <div id='graybg01' className='gray-bg' onClick={props.clickHandle}>
+      {props.children}
+    </div>
+  );
+}
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -31,20 +43,34 @@ class Navbar extends React.Component {
     };
   }
 
-  searchClickHandle = () => {
-    this.setState({ showFull: true });
-    return;
+  searchClickHandle = (event) => {
+    if (
+      event &&
+      event.target &&
+      (event.target.id === "graybg01" || event.target.id === "searchbtn01")
+    )
+      this.setState({ showFull: !this.state.showFull });
   };
+
   render() {
     return (
-      <div className={classNames({"expained-nav":this.state.showFull})}>
+      <div>
         {this.state.showFull ? (
-          <Headerbar isTransparent={false} />
+          <GrayBg clickHandle={this.searchClickHandle}>
+            <div
+              className={classNames({ "expained-nav": this.state.showFull })}
+            >
+              <Headerbar isTransparent={false} />
+            </div>
+          </GrayBg>
         ) : (
-          <NormalBar clickHandle={() => this.searchClickHandle()} />
+          <div className={classNames({ "expained-nav": this.state.showFull })}>
+            <NormalBar clickHandle={this.searchClickHandle} />
+          </div>
         )}
       </div>
     );
   }
 }
+
 export default Navbar;

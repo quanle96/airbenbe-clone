@@ -3,6 +3,7 @@
   height: 48px;
   background-color: white;
 }
+
 .AwesomeIcon-search-wraper {
   height: 32px;
   width: 32px;
@@ -13,6 +14,7 @@
   align-items: center;
   border-radius: 100%;
 }
+
 .button-search-text {
   padding-left: 20px;
 }

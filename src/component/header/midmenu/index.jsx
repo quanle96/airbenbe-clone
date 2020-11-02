@@ -1,7 +1,6 @@
 import React from "react";
-import "./index.css";
 
-
+import "./Midmenu.css";
 
 function Midmenu(props) {
   return (
@@ -14,4 +13,5 @@ function Midmenu(props) {
     </div>
   );
 }
+
 export default Midmenu;

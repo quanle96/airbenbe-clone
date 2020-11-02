@@ -1,6 +1,8 @@
 import React from "react";
-import "./index.css";
-import Card from "./card";
+
+import Card from "./Card";
+
+import "./Experience.css";
 
 class Experience extends React.Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class Experience extends React.Component {
       ],
     };
   }
+
   render() {
     return (
       <div className="experience-wraper">
@@ -41,4 +44,5 @@ class Experience extends React.Component {
     );
   }
 }
+
 export default Experience;

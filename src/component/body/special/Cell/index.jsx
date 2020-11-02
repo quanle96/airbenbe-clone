@@ -1,12 +1,14 @@
-import "./index.css";
 import React from "react";
 import { Card, CardImg, CardText, CardBody } from "reactstrap";
+
+import "./Cell.css";
 
 class Cell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  
   render() {
     return (
       <Card>

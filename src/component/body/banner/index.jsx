@@ -1,5 +1,6 @@
-import "./index.css";
 import React from "react";
+
+import "./Banner.css";
 
 class Banner extends React.Component {
   constructor(props) {
@@ -34,4 +35,5 @@ class Banner extends React.Component {
     );
   }
 }
+
 export default Banner;

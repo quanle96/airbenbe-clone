@@ -2,7 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
-import "./index.css";
+
+import "./SearchButton.css";
 
 function SearchIcon(props) {
   return (
@@ -11,6 +12,7 @@ function SearchIcon(props) {
     </div>
   );
 }
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -18,10 +20,12 @@ class Search extends React.Component {
       width: 300,
     };
   }
+
   render() {
     return (
       <div>
         <button
+          id='searchbtn01'
           onClick={this.props.clickHandle}
           className={classNames(
             "button-search",

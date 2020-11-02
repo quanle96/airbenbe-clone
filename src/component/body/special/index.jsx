@@ -1,7 +1,9 @@
-import "./index.css";
 import React from "react";
 import { Row, Col } from "reactstrap";
+
 import Cell from "./Cell"
+
+import "./Special.css";
 
 class Special extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class Special extends React.Component {
       ],
     };
   }
+
   render() {
     return (
       <div className='special-wraper'>
@@ -83,5 +86,7 @@ class Special extends React.Component {
       </div>
     );
   }
+  
 }
+
 export default Special;

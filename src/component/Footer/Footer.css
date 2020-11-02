@@ -20,28 +20,32 @@ a > svg {
   margin-bottom: 0px !important;
   margin-top: 30px;
 }
+
 ._1l3ys1i:not(:last-child) {
-    padding-bottom: 24px !important;
-    margin-bottom: 24px !important;
-    border-bottom: 1px solid #dddddd !important;
-  }
+  padding-bottom: 24px !important;
+  margin-bottom: 24px !important;
+  border-bottom: 1px solid #dddddd !important;
+}
+
 ._yuolfv {
   list-style: none !important;
   margin: 0px !important;
   padding: 0px !important;
 }
+
 ._wmuyow {
   margin-top: 12px !important;
 }
+
 ._o06542u {
-    font-family: inherit !important;
-    font-weight: inherit !important;
-    font-style: inherit !important;
-    font-variant: inherit !important;
-    text-decoration: none !important;
-    color: #484848 !important;
-    font-size: 14px !important;
-    line-height: 18px !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+  font-variant: inherit !important;
+  text-decoration: none !important;
+  color: #484848 !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
 }
 
 @media (min-width: 1128px) {
@@ -72,12 +76,14 @@ a > svg {
     padding-right: 0px !important;
   } */
 }
+
 @media (min-width: 950px) {
   .footer-wraper {
-    padding-left: 40px ;
+    padding-left: 40px;
     padding-right: 40px;
   }
 }
+
 @media (min-width: 744px) {
   .footer-wraper {
     padding-left: 40px;
@@ -104,6 +110,7 @@ a > svg {
     padding-right: 12px !important;
   } */
 }
+
 @media (min-width: 375px) {
   .footer-wraper {
     padding-left: 24px;
@@ -111,29 +118,34 @@ a > svg {
   }
 }
 
-.flex{
-    display: flex;
-    flex-direction: row;
+.flex {
+  display: flex;
+  flex-direction: row;
 }
-.flex a{
-    color: #484848;
-    /* display: flex;
+
+.flex a {
+  color: #484848;
+  /* display: flex;
     justify-content: space-between; */
 }
-.bot-right-row{
-    justify-content: space-between;
-    font-size: 14px !important;
-    line-height: 18px !important;
-    color: #222222 !important;
-    display: inline-block !important;
-    width: 100%;
+
+.bot-right-row {
+  justify-content: space-between;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  color: #222222 !important;
+  display: inline-block !important;
+  width: 100%;
 }
-.bot-left-row{
-    justify-content: space-between;
+
+.bot-left-row {
+  justify-content: space-between;
 }
+
 .bot-left-row > div {
-    flex:1 1 auto;
+  flex: 1 1 auto;
 }
-.bot{
-    min-height: 50px;
+
+.bot {
+  min-height: 50px;
 }

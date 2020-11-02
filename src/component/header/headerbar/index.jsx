@@ -1,11 +1,14 @@
 import React from "react";
-import RightMenu from "../rightMenu";
-import Midmenu from "../midmenu";
-import "./index.css";
 import { Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
+
+import RightMenu from "../RightMenu";
+import Midmenu from "../Midmenu";
+//import Location from "../SearchItem/Location";
+
+import "./Headerbar.css";
 
 function Logo(props) {
   return (
@@ -16,68 +19,94 @@ function Logo(props) {
     </div>
   );
 }
+
 function SearchIcon(props) {
   return (
-    <div className='AwesomeIcon-search-wraper-2'>
+    <div
+      className={classNames("AwesomeIcon-search-wraper-2", "search-btn", {
+        "search-btn-width": !props.isTran,
+      })}
+    >
       <FontAwesomeIcon icon={faSearch} />
     </div>
   );
 }
-function MenuButton(props) {
-  return (
-    <button style={{width:props.width}}
-      className={classNames("menuButton", "button-hover","menuButton-more-height")}
-    >
-      {props.children}
-    </button>
-  );
+
+class MenuButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  handleClick = (e) => {
+    e.stopPropagation(); //  <------ Here is the magic
+    //this.props.onClick();
+  };
+  render() {
+    return (
+      <button
+        style={{ width: this.props.width }}
+        onClick={this.handleClick}
+        className={classNames(
+          "menuButton",
+          "button-hover",
+          "menuButton-more-height",
+          "mid-menu-btn"
+        )}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
 }
+
 function SearchMenu(props) {
   return (
     <div className='SearchMenu'>
-      <MenuButton width="270px">
+      <MenuButton width='270px'>
         <div>Địa điểm</div>
+        {/* <Location/> */}
       </MenuButton>
-      <MenuButton width="178px">
+      <MenuButton width='178px'>
         <div>Nhận phòng</div>
       </MenuButton>
-      <MenuButton width="178px">
+      <MenuButton width='178px'>
         <div>Trả phòng</div>
       </MenuButton>
-      <MenuButton width="170px">
+      <MenuButton width='170px'>
         <div>Khách</div>
       </MenuButton>
-      <SearchIcon />
+      <SearchIcon isTran={props.isTran} />
     </div>
   );
 }
+
 class Headerbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
-  
+
   render() {
     return (
-      <div className={classNames('navbar','navbar-clear-bg' )}>
-        <Row className="navbar-top">
-          <Col xs="4">
-            <Logo color={this.props.isTransparent? "white":"red"} />
+      <div className={classNames("navbar", "navbar-clear-bg")}>
+        <Row className='navbar-top'>
+          <Col xs='4'>
+            <Logo color={this.props.isTransparent ? "white" : "red"} />
           </Col>
-          <Col xs="4">
-            <Midmenu/>
+          <Col xs='4'>
+            <Midmenu />
           </Col>
-          <Col xs="4">
-            <RightMenu />
+          <Col xs='4'>
+            <RightMenu isTran={this.props.isTransparent} />
           </Col>
         </Row>
-        <Row className="headerbar-row2">
-          <SearchMenu/>
+        <Row className='headerbar-row2'>
+          <SearchMenu isTran={this.props.isTransparent} />
         </Row>
-        {/* <Row className="navbar-bot"><Search /></Row> */}
       </div>
     );
   }
 }
+
 export default Headerbar;

@@ -6,18 +6,21 @@
   padding-right: 80px !important;
   padding-left: 80px !important;
 }
+
 .title {
   font-size: 32px !important;
   line-height: 26px !important;
   color: rgb(255, 255, 255) !important;
   font-weight: 800 !important;
 }
+
 .description {
   font-size: 16px !important;
   line-height: 20px !important;
   color: rgb(255, 255, 255) !important;
   margin-top: 4px !important;
 }
+
 .special-button {
   cursor: pointer !important;
   display: inline-block !important;
@@ -46,23 +49,27 @@
   border-color: rgb(255, 255, 255) !important;
   background: transparent !important;
 }
+
 .description-container {
   display: flex;
   justify-content: space-between;
   padding-bottom: 35px;
 }
+
 @media (min-width: 1128px) {
   .title {
     font-size: 32px !important;
     line-height: 36px !important;
   }
 }
+
 @media (min-width: 950px) {
   .description {
     max-width: 864px !important;
     width: 60% !important;
   }
 }
+
 @media (min-width: 744px) {
   .title {
     font-size: 26px !important;
