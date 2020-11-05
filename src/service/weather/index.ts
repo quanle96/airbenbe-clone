@@ -1,3 +1,5 @@
+// import { promises } from "fs";
+
 const axios = require("axios").default;
 
 const APIKey = "f6b9609818c10c6fac1496a3b43ddf19";
@@ -6,14 +8,19 @@ const defaultUnits = "metric";
 const defaultLanguages = "vi";
 
 class WeatherService {
-  constructor() {
-    this.lastCoord = { lat: 0, lon: 0 };
+  private lastCoord : {lat:number,lon:number} = {lat:0, lon:0};
+  private static instance:WeatherService;
+  public static getInstance():WeatherService{
+    if(!WeatherService.instance){
+      WeatherService.instance = new WeatherService();
+    }
+    return WeatherService.instance;
   }
 
-  getCurrent(city, units = defaultUnits, lang = defaultLanguages) {
+  public getCurrent = (city:string, units = defaultUnits, lang = defaultLanguages) => {
     //const url = `${APIUrl}?=${cityName}&appid=${APIKey}`;
     return axios
-      .get(APIUrl + "/weather", {
+      .get( `${APIUrl}/weather`, {
         params: {
           q: city,
           appid: APIKey,
@@ -21,21 +28,18 @@ class WeatherService {
           lang,
         },
       })
-      .then((response) => {
-        if (response.data)
-          this.lastCoord = response.data.coord;
-        return response;
+      .then((response:any) => {
+        this.lastCoord = response.data.coord;
+        return response.data;
       });
   }
 
-  getByHourlyNDaily(
+  public getByHourlyNDaily = (
     coord = this.lastCoord,
     units = defaultUnits,
     lang = defaultLanguages
-  ) {
-    console.log(this.lastCoord)
-
-    return axios.get(APIUrl + "/onecall", {
+  ) => {
+    return axios.get(`${APIUrl}/onecall`, {
       //onecall
       params: {
         lat: coord.lat,
@@ -45,7 +49,7 @@ class WeatherService {
         units: units,
         lang,
       },
-    }); //.then((response) => {})
+    }).then((response:any) => response.data); //
   }
 }
 
