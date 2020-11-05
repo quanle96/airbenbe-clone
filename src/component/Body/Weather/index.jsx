@@ -1,10 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
 
 import WeatherService from '../../../service/weather';
 import DateTimer from '../../../util/dateTime';
-
+import { getWeather } from '../../../redux/actions/index';
 import './Weather.css';
 
 function Icon(props) {
@@ -36,70 +37,17 @@ class Weather extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      currentWeather: {
-        iconCode: '10d',
-        temp: 0,
-        description: 'none',
-        humidity: 0,
-      },
-      hourlyDailyWeather: {
-        hourly: [],
-        daily: [],
-      },
       city: 'Ho Chi Minh City',
     };
     this.weatherService = new WeatherService();
   }
 
   componentDidMount() {
-    this.callCurrentWeather();
+    this.props.getWeather(this.state.city);
   }
 
-  callCurrentWeather = () => {
-    this.weatherService
-      .getCurrent(this.state.city)
-      .then((response) => {
-        const currentWeather = {
-          iconCode: response.data.weather[0].icon,
-          temp: response.data.main.temp,
-          description: response.data.weather[0].description,
-          humidity: response.data.main.humidity,
-        };
-        this.setState((oldState) => ({
-          ...oldState,
-          currentWeather,
-          isLoading: true,
-        }));
-        this.callHourlyDailyWeather();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  callHourlyDailyWeather = () => {
-    this.weatherService
-      .getByHourlyNDaily()
-      .then((response) => {
-        const hourlyDailyWeather = {
-          hourly: response.data.hourly,
-          daily: response.data.daily,
-        };
-        this.setState((oldState) => ({
-          ...oldState,
-          hourlyDailyWeather,
-          isLoading: false,
-        }));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   refreshHandle = () => {
-    this.setState((oldState) => ({ ...oldState, isLoading: true }));
-    this.callCurrentWeather();
+    this.props.getWeather(this.state.city);
   };
 
   render() {
@@ -114,27 +62,34 @@ class Weather extends React.Component {
       </div>
     );
 
-    const hourly = this.state.hourlyDailyWeather.hourly[4];
-    const Dailies = this.state.hourlyDailyWeather.daily.slice(0, 3);
-    const HourlyCard = () => {
-      return hourly ? (
-        <Card>
-          <Title>4 giờ sau</Title>
-          <Icon code={hourly.weather[0].icon} />
-          <Temp>{hourly.temp.toFixed(0)}</Temp>
-        </Card>
-      ) : (
-        <div />
-      );
-    };
+    console.log(this.props.weatherData);
+    console.log(this.props.isLoading);
+    if (!this.props.isLoading && this.props.weatherData) {
+      const hourly = this.props.weatherData[1].hourly[4];
+      const Dailies = this.props.weatherData[1].daily.slice(0, 3);
+      const HourlyCard = () => {
+        return hourly ? (
+          <Card>
+            <Title>4 giờ sau</Title>
+            <Icon code={hourly.weather[0].icon} />
+            <Temp>{hourly.temp.toFixed(0)}</Temp>
+          </Card>
+        ) : (
+          <div />
+        );
+      };
 
-    if (!this.state.isLoading) {
+      const currentWeather = {
+        icon: this.props.weatherData[0].weather[0].icon,
+        temp: this.props.weatherData[0].main.temp.toFixed(0),
+      };
+
       RenderElement = (
         <div className='weather-wraper'>
           <Card>
             <Title>Hiện Tại</Title>
-            <Icon code={this.state.currentWeather.iconCode} />
-            <Temp>{this.state.currentWeather.temp.toFixed(0)}</Temp>
+            <Icon code={currentWeather.icon} />
+            <Temp>{currentWeather.temp}</Temp>
           </Card>
           <HourlyCard />
           {Dailies.map((d, index) => {
@@ -159,4 +114,15 @@ class Weather extends React.Component {
   }
 }
 
-export default Weather;
+const mapStateToProps = (state) => {
+  return {
+    weatherData: state.data,
+    isLoading: state.loading,
+  };
+};
+//mapDispatchToProps
+const actionCreators = {
+  getWeather,
+};
+
+export default connect(mapStateToProps, actionCreators)(Weather);

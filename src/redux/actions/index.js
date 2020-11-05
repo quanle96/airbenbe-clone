@@ -1,3 +1,5 @@
-export const getNews = () => ({
-  type: 'GET_NEWS',
+const getWeather = (cityName) => ({
+  type: 'GET_WEATHER',
+  cityName,
 });
+export { getWeather };

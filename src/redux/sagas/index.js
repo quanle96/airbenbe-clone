@@ -1,14 +1,19 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, all, call } from 'redux-saga/effects';
+import WeatherService from '../../service/weather';
 
-function* fetchNews() {
-  const json = yield fetch(
-    'https://newsapi.org/v1/articles?source=cnn&apiKey=c39a26d9c12f48dba2a5c00e35684ecc'
-  ).then((response) => response.json());
-  yield put({ type: 'NEWS_RECEIVED', json: json.articles });
+function* fetchWeather(actions) {
+  const weatherService = WeatherService.getInstance();
+  const dataToDay = yield call(weatherService.getCurrent, actions.cityName);
+  const dataAllDate = yield call(
+    weatherService.getByHourlyNDaily,
+    dataToDay.coord
+  );
+  //   console.log([dataToDay, dataAllDate]);
+  yield put({ type: 'WEATHER_RECEIVED', json: [dataToDay, dataAllDate] });
 }
 
 function* actionWatcher() {
-  yield takeLatest('GET_NEWS', fetchNews);
+  yield takeLatest('GET_WEATHER', fetchWeather);
 }
 
 export default function* rootSaga() {
