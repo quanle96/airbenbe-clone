@@ -4,10 +4,13 @@ import { connect, ConnectedProps } from 'react-redux';
 import DateTimer from '../../../util/dateTime';
 import { GetWeather } from '../../../redux/actions/index';
 import './Weather.css';
-import { Props } from '../../../types';
+import { IProps, Daily, WeatherResponse } from '../../../types';
 import { Icon, Temp, Card, Title, RefreshBtn } from './weatherComponent';
 
-const mapStateToProps = (state: { data: any; loading: boolean }) => {
+const mapStateToProps = (state: {
+  data: WeatherResponse;
+  loading: boolean;
+}) => {
   return {
     weatherData: state.data,
     isLoading: state.loading,
@@ -21,10 +24,10 @@ const actionCreators = {
 const connector = connect(mapStateToProps, actionCreators);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-interface WeatherProps extends PropsFromRedux, Props {}
+type WeatherProps = PropsFromRedux & IProps;
 
 const Weather: React.FC<WeatherProps> = (props) => {
-  const [city, setCity] = useState<string>('Ho Chi Minh');
+  const [city, setCity] = useState('Ho Chi Minh');
   let RenderElement = (
     <div className='weather-wraper'>
       <div
@@ -46,8 +49,8 @@ const Weather: React.FC<WeatherProps> = (props) => {
 
   //process before render
   if (!props.isLoading && props.weatherData) {
-    const hourly = props.weatherData[1].hourly[4];
-    const Dailies = props.weatherData[1].daily.slice(0, 3);
+    const hourly = props.weatherData.AllDate.hourly[4];
+    const Dailies = props.weatherData.AllDate.daily.slice(0, 3);
     const HourlyCard = () => {
       return hourly ? (
         <Card>
@@ -61,8 +64,8 @@ const Weather: React.FC<WeatherProps> = (props) => {
     };
 
     const currentWeather = {
-      icon: props.weatherData[0].weather[0].icon,
-      temp: props.weatherData[0].main.temp.toFixed(0),
+      icon: props.weatherData.ToDay.weather[0].icon,
+      temp: props.weatherData.ToDay.main.temp.toFixed(0),
     };
 
     RenderElement = (
@@ -73,7 +76,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
           <Temp>{currentWeather.temp}</Temp>
         </Card>
         <HourlyCard />
-        {Dailies.map((d: any, index: number) => {
+        {Dailies.map((d: Daily, index: number) => {
           return (
             <Card key={d.dt}>
               {index < 1 ? (

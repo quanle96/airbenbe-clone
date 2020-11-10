@@ -30,9 +30,11 @@ class Home extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Header />
-        <Body />
-        <Footer />
+        <React.StrictMode>
+          <Header />
+          <Body />
+          <Footer />
+        </React.StrictMode>
       </Provider>
     );
   }

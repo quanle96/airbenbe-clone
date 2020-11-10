@@ -9,13 +9,13 @@ import Midmenu from '../Midmenu';
 //import Location from "../SearchItem/Location";
 
 import './Headerbar.css';
-type Props = {
+type IProps = {
   color?: string;
   isTran?: boolean;
   width?: string;
   isTransparent?: boolean;
 };
-const Logo: React.FC<Props> = (props) => {
+const Logo: React.FC<IProps> = (props) => {
   return (
     <div className='logo-warper'>
       <svg className='logo-svg' fill={props.color}>
@@ -25,7 +25,7 @@ const Logo: React.FC<Props> = (props) => {
   );
 };
 
-const SearchIcon: React.FC<Props> = (props) => {
+const SearchIcon: React.FC<IProps> = (props) => {
   return (
     <div
       className={classNames('AwesomeIcon-search-wraper-2', 'search-btn', {
@@ -37,7 +37,7 @@ const SearchIcon: React.FC<Props> = (props) => {
   );
 };
 
-const SearchMenu: React.FC<Props> = (props) => {
+const SearchMenu: React.FC<IProps> = (props) => {
   return (
     <div className='SearchMenu'>
       <MenuButton width='270px'>
@@ -58,7 +58,7 @@ const SearchMenu: React.FC<Props> = (props) => {
   );
 };
 
-class MenuButton extends React.Component<Props> {
+class MenuButton extends React.Component<IProps> {
   handleClick = (e: React.MouseEvent) => {
     e.stopPropagation(); //  <------ Here is the magic
     //this.props.onClick();
@@ -81,7 +81,7 @@ class MenuButton extends React.Component<Props> {
   }
 }
 
-class Headerbar extends React.Component<Props> {
+class Headerbar extends React.Component<IProps> {
   render() {
     return (
       <div className={classNames('navbar', 'navbar-clear-bg')}>

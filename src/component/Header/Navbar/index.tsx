@@ -7,12 +7,12 @@ import Headerbar from '../Headerbar';
 
 import './Navbar.css';
 
-type Props = {
+type IProps = {
   color?: string;
   clickHandle?: (e: React.MouseEvent) => void;
 };
 
-const Logo: React.FC<Props> = (props) => {
+const Logo: React.FC<IProps> = (props) => {
   return (
     <div className='logo-warper'>
       <svg className='logo-svg' fill={props.color}>
@@ -22,7 +22,7 @@ const Logo: React.FC<Props> = (props) => {
   );
 };
 
-const NormalBar: React.FC<Props> = (props) => {
+const NormalBar: React.FC<IProps> = (props) => {
   return (
     <div className='navbar navbar-bg'>
       <Logo color='#FF385C' />
@@ -32,7 +32,7 @@ const NormalBar: React.FC<Props> = (props) => {
   );
 };
 
-const GrayBg: React.FC<Props> = (props) => {
+const GrayBg: React.FC<IProps> = (props) => {
   return (
     <div id='graybg01' className='gray-bg' onClick={props.clickHandle}>
       {props.children}

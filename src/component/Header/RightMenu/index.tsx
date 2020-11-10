@@ -53,13 +53,13 @@ function UserMenu() {
     </div>
   );
 }
-type Props = {
+type IProps = {
   isBorderButton?: boolean;
   color?: string;
   isTran?: boolean;
 };
 
-const MenuButton: React.FC<Props> = (props) => {
+const MenuButton: React.FC<IProps> = (props) => {
   return (
     <button
       className={classNames('menuButton', {
@@ -74,7 +74,7 @@ const MenuButton: React.FC<Props> = (props) => {
   );
 };
 
-class RightMenu extends React.Component<Props> {
+class RightMenu extends React.Component<IProps> {
   render() {
     const color = this.props.isTran ? 'white' : '#484848';
     return (

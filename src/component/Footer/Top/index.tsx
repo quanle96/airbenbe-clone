@@ -3,13 +3,13 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 
 type Item = { id: string; name: string; link: string };
-type Props = {
+type IProps = {
   name?: string;
-  items?: any[];
+  items?: Item[];
   cols?: { id: string; name: string; items: Item[] }[];
 };
 
-const TopCol: React.FC<Props> = (props) => {
+const TopCol: React.FC<IProps> = (props) => {
   if (props.name && props.items)
     return (
       <section className='_1l3ys1i'>
@@ -30,7 +30,7 @@ const TopCol: React.FC<Props> = (props) => {
   else return <div />;
 };
 
-const Top: React.FC<Props> = (props) => {
+const Top: React.FC<IProps> = (props) => {
   if (props.cols)
     return (
       <Row>

@@ -12,8 +12,8 @@ function SearchIcon() {
     </div>
   );
 }
-type Props = { clickHandle?: (e: React.MouseEvent) => void };
-class Search extends React.Component<Props> {
+type IProps = { clickHandle?: (e: React.MouseEvent) => void };
+class Search extends React.Component<IProps> {
   readonly state = {
     width: 300,
   };
