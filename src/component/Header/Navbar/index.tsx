@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import Search from '../SearchButton';
@@ -44,40 +44,34 @@ type State = {
   showFull: boolean;
 };
 
-class Navbar extends React.Component {
-  readonly state: State = {
-    showFull: false,
-  };
+const Navbar: React.FC = () => {
+  const [showFull, setShowFull] = useState(false);
 
-  searchClickHandle = (event: React.MouseEvent) => {
+  const searchClickHandle = (event: React.MouseEvent) => {
     if (
       event &&
       event.currentTarget &&
       (event.currentTarget.id === 'graybg01' ||
         event.currentTarget.id === 'searchbtn01')
     )
-      this.setState({ showFull: !this.state.showFull });
+      setShowFull(!showFull);
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.showFull ? (
-          <GrayBg clickHandle={this.searchClickHandle}>
-            <div
-              className={classNames({ 'expained-nav': this.state.showFull })}
-            >
-              <Headerbar isTransparent={false} />
-            </div>
-          </GrayBg>
-        ) : (
-          <div className={classNames({ 'expained-nav': this.state.showFull })}>
-            <NormalBar clickHandle={this.searchClickHandle} />
+  return (
+    <div>
+      {showFull ? (
+        <GrayBg clickHandle={searchClickHandle}>
+          <div className={classNames({ 'expained-nav': showFull })}>
+            <Headerbar isTransparent={false} />
           </div>
-        )}
-      </div>
-    );
-  }
-}
+        </GrayBg>
+      ) : (
+        <div className={classNames({ 'expained-nav': showFull })}>
+          <NormalBar clickHandle={searchClickHandle} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Navbar;

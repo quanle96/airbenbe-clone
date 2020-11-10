@@ -58,50 +58,45 @@ const SearchMenu: React.FC<IProps> = (props) => {
   );
 };
 
-class MenuButton extends React.Component<IProps> {
-  handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); //  <------ Here is the magic
-    //this.props.onClick();
+const MenuButton: React.FC<IProps> = (props) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
-  render() {
-    return (
-      <button
-        style={{ width: this.props.width }}
-        onClick={this.handleClick}
-        className={classNames(
-          'menuButton',
-          'button-hover',
-          'menuButton-more-height',
-          'mid-menu-btn'
-        )}
-      >
-        {this.props.children}
-      </button>
-    );
-  }
-}
+  return (
+    <button
+      style={{ width: props.width }}
+      onClick={handleClick}
+      className={classNames(
+        'menuButton',
+        'button-hover',
+        'menuButton-more-height',
+        'mid-menu-btn'
+      )}
+    >
+      {props.children}
+    </button>
+  );
+};
 
-class Headerbar extends React.Component<IProps> {
-  render() {
-    return (
-      <div className={classNames('navbar', 'navbar-clear-bg')}>
-        <Row className='navbar-top'>
-          <Col xs='4'>
-            <Logo color={this.props.isTransparent ? 'white' : 'red'} />
-          </Col>
-          <Col xs='4'>
-            <Midmenu />
-          </Col>
-          <Col xs='4'>
-            <RightMenu isTran={this.props.isTransparent} />
-          </Col>
-        </Row>
-        <Row className='headerbar-row2'>
-          <SearchMenu isTran={this.props.isTransparent} />
-        </Row>
-      </div>
-    );
-  }
-}
+const Headerbar: React.FC<IProps> = (props) => {
+  return (
+    <div className={classNames('navbar', 'navbar-clear-bg')}>
+      <Row className='navbar-top'>
+        <Col xs='4'>
+          <Logo color={props.isTransparent ? 'white' : 'red'} />
+        </Col>
+        <Col xs='4'>
+          <Midmenu />
+        </Col>
+        <Col xs='4'>
+          <RightMenu isTran={props.isTransparent} />
+        </Col>
+      </Row>
+      <Row className='headerbar-row2'>
+        <SearchMenu isTran={props.isTransparent} />
+      </Row>
+    </div>
+  );
+};
 
 export default Headerbar;

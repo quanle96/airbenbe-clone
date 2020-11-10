@@ -1,41 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Navbar from './Navbar';
 import Headerbar from './Headerbar';
 
 import './Header.css';
-type State = {
-  isOnTop: boolean;
-};
-class Header extends React.Component {
-  readonly state: State = {
-    isOnTop: true,
-  };
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScroll);
-  }
+const Header: React.FC = () => {
+  const [isOnTop, setIsOnTop] = useState(true);
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
-  }
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
-  onScroll = () => {
+  const onScroll = () => {
     let currentScrollPos = window.pageYOffset;
     let maxScroll = 75;
     if (currentScrollPos >= 0 && currentScrollPos < maxScroll) {
-      this.setState({ isOnTop: true });
+      setIsOnTop(true);
     } else {
-      this.setState({ isOnTop: false });
+      setIsOnTop(false);
     }
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.isOnTop ? <Headerbar isTransparent={true} /> : <Navbar />}
-      </div>
-    );
-  }
-}
+  return <div>{isOnTop ? <Headerbar isTransparent={true} /> : <Navbar />}</div>;
+};
 export default Header;

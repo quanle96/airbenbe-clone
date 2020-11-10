@@ -26,18 +26,16 @@ const store = createStore(
 
 sageMidleWare.run(rootSaga);
 
-class Home extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <React.StrictMode>
-          <Header />
-          <Body />
-          <Footer />
-        </React.StrictMode>
-      </Provider>
-    );
-  }
-}
+const Home = () => {
+  return (
+    <Provider store={store}>
+      <React.StrictMode>
+        <Header />
+        <Body />
+        <Footer />
+      </React.StrictMode>
+    </Provider>
+  );
+};
 
 ReactDOM.render(<Home />, document.getElementById('root'));
