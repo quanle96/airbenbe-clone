@@ -1,55 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import DateTimer from '../../../util/dateTime';
-import { GetWeather } from '../../../redux/actions/index';
 import './Weather.css';
 import { IProps, Daily, WeatherResponse } from '../../../types';
-import { Icon, Temp, Card, Title, RefreshBtn } from './weatherComponent';
+import {
+  Icon,
+  Temp,
+  Card,
+  Title,
+  RefreshBtn,
+  LoadingCards,
+} from './weatherComponent';
+import { GetWeather } from '../../../redux/actions';
 
-const mapStateToProps = (state: {
-  data: WeatherResponse;
+interface RootState {
   loading: boolean;
-}) => {
-  return {
-    weatherData: state.data,
-    isLoading: state.loading,
-  };
-};
-//mapDispatchToProps
-const actionCreators = {
-  getWeather: GetWeather,
-};
+  data: WeatherResponse;
+  getWeather: (city: string) => void;
+}
 
-const connector = connect(mapStateToProps, actionCreators);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type WeatherProps = PropsFromRedux & IProps;
+type WeatherProps = IProps;
 
 const Weather: React.FC<WeatherProps> = (props) => {
   const [city, setCity] = useState('Ho Chi Minh');
-  let RenderElement = (
-    <div className='weather-wraper'>
-      <div
-        className='icon loading-icon'
-        style={{
-          backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-        }}
-      />
-    </div>
-  );
+
+  let RenderElement = <LoadingCards />;
+
+  const dispatch = useDispatch();
+  const getWeather = (city: string = '') => dispatch(GetWeather(city));
 
   useEffect(() => {
-    props.getWeather(city);
+    getWeather(city);
   }, [city]);
 
   const refreshHandle = () => {
-    props.getWeather(city);
+    getWeather(city);
   };
-  const { isLoading, weatherData } = props;
+
+  const isLoading = useSelector((state: RootState) => state.loading);
+  console.log(isLoading);
+  const weatherData = useSelector((state: RootState) => state.data);
   //process before render
   if (!isLoading && weatherData) {
-    const { AllDate } = props.weatherData;
+    const { AllDate } = weatherData;
     const hourly = AllDate.hourly[4];
     const Dailies = AllDate.daily.slice(0, 3);
     const HourlyCard = () => {
@@ -98,4 +92,4 @@ const Weather: React.FC<WeatherProps> = (props) => {
   return RenderElement;
 };
 
-export default connector(Weather);
+export default Weather; //connector(Weather);
