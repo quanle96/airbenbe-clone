@@ -27,3 +27,50 @@ export const RefreshBtn: React.FC<IProps> = ({ refreshHandle }) => {
     </button>
   );
 };
+
+export const LoadingCards: React.FC = () => {
+  return (
+    <div className='weather-wraper'>
+      <Card>
+        <div
+          className='icon loading-icon'
+          style={{
+            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
+          }}
+        />
+      </Card>
+      <Card>
+        <div
+          className='icon loading-icon'
+          style={{
+            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
+          }}
+        />
+      </Card>
+      <Card>
+        <div
+          className='icon loading-icon'
+          style={{
+            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
+          }}
+        />
+      </Card>
+      <Card>
+        <div
+          className='icon loading-icon'
+          style={{
+            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
+          }}
+        />
+      </Card>
+      <Card>
+        <div
+          className='icon loading-icon'
+          style={{
+            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
+          }}
+        />
+      </Card>
+    </div>
+  );
+};

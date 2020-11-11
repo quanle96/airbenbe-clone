@@ -40,10 +40,6 @@ const GrayBg: React.FC<IProps> = (props) => {
   );
 };
 
-type State = {
-  showFull: boolean;
-};
-
 const Navbar: React.FC = () => {
   const [showFull, setShowFull] = useState(false);
 
