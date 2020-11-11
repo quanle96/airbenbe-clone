@@ -46,11 +46,12 @@ const Weather: React.FC<WeatherProps> = (props) => {
   const refreshHandle = () => {
     props.getWeather(city);
   };
-
+  const { isLoading, weatherData } = props;
   //process before render
-  if (!props.isLoading && props.weatherData) {
-    const hourly = props.weatherData.AllDate.hourly[4];
-    const Dailies = props.weatherData.AllDate.daily.slice(0, 3);
+  if (!isLoading && weatherData) {
+    const { AllDate } = props.weatherData;
+    const hourly = AllDate.hourly[4];
+    const Dailies = AllDate.daily.slice(0, 3);
     const HourlyCard = () => {
       return hourly ? (
         <Card>
@@ -62,10 +63,10 @@ const Weather: React.FC<WeatherProps> = (props) => {
         <div />
       );
     };
-
+    const { ToDay } = weatherData;
     const currentWeather = {
-      icon: props.weatherData.ToDay.weather[0].icon,
-      temp: props.weatherData.ToDay.main.temp.toFixed(0),
+      icon: ToDay.weather[0].icon,
+      temp: ToDay.main.temp.toFixed(0),
     };
 
     RenderElement = (

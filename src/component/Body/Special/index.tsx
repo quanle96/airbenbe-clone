@@ -7,6 +7,43 @@ import Cell from './Cell';
 
 import './Special.css';
 
+type aCard = {
+  img: string;
+  content: string;
+  type: number;
+};
+type CardProps = {
+  xs?: string;
+  data?: aCard;
+  dataList?: aCard[];
+};
+
+const Card: React.FC<CardProps> = (props) => {
+  if (props.data)
+    return (
+      <Col xs={props.xs}>
+        <Cell data={props.data} />
+      </Col>
+    );
+  else return <div />;
+};
+
+const RightCards: React.FC<CardProps> = (props) => {
+  if (props.dataList)
+    return (
+      <Col xs='6'>
+        <Row>
+          <Card xs='6' data={props.dataList[1]} />
+          <Card xs='6' data={props.dataList[2]} />
+        </Row>
+        <Row>
+          <Card xs='12' data={props.dataList[3]} />
+        </Row>
+      </Col>
+    );
+  else return <div />;
+};
+
 const Special: React.FC<IProps> = () => {
   const [cards, setCards] = useState([
     {
@@ -59,24 +96,8 @@ const Special: React.FC<IProps> = () => {
       </div>
       <div className='special-galary'>
         <Row className='grid-wraper'>
-          <Col xs='6'>
-            <Cell data={cards[0]} />
-          </Col>
-          <Col xs='6'>
-            <Row>
-              <Col xs='6'>
-                <Cell data={cards[1]} />
-              </Col>
-              <Col xs='6'>
-                <Cell data={cards[2]} />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs='12'>
-                <Cell data={cards[3]} />
-              </Col>
-            </Row>
-          </Col>
+          <Card xs='6' data={cards[0]} />
+          <RightCards dataList={cards} />
         </Row>
       </div>
     </div>
