@@ -1,5 +1,7 @@
 // import { promises } from "fs";
-//import { WeatherResponse } from '../../redux/types';
+//import { CurrentWeatherResponse } from '../../redux/types';
+
+import { CurrentWeatherResponse, OneCallWeatherResponse } from '../../types';
 
 const axios = require('axios').default;
 
@@ -33,7 +35,7 @@ class WeatherService {
           lang,
         },
       })
-      .then((response: any) => {
+      .then((response: { data: CurrentWeatherResponse }) => {
         this.lastCoord = response.data.coord;
         return response.data;
       });
@@ -56,7 +58,7 @@ class WeatherService {
           lang,
         },
       })
-      .then((response: any) => response.data); //
+      .then((response: { data: OneCallWeatherResponse }) => response.data); //
   };
 }
 

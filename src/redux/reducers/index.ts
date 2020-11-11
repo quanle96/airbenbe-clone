@@ -5,7 +5,7 @@ const reducer = (state = {}, action: WeatherAction) => {
     case WeatherActionTypes.FETCH_REQUEST:
       return { ...state, loading: true };
     case WeatherActionTypes.FETCH_SUCCESS:
-      return { ...state, data: action.dataList, loading: false };
+      return { ...state, data: action.data, loading: false };
     default:
       return state;
   }

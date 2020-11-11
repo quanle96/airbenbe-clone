@@ -1,9 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 
-type Props = {};
-
-const Social: React.FC<Props> = () => {
+const Social: React.FC = () => {
   return (
     <Row>
       <Col xs='4'>
@@ -74,7 +72,7 @@ const Social: React.FC<Props> = () => {
   );
 };
 
-const Terms: React.FC<Props> = () => {
+const Terms: React.FC = () => {
   return (
     <div className='bot-left-row flex'>
       <div>© 2020 Airbnb, Inc. All rights reserved</div>
@@ -93,7 +91,7 @@ const Terms: React.FC<Props> = () => {
   );
 };
 
-const Options: React.FC<Props> = () => {
+const Options: React.FC = () => {
   return (
     <div className='bot-right-row flex'>
       <Row>

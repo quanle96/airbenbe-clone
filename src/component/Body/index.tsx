@@ -7,16 +7,14 @@ import Weather from './Weather';
 
 import './Body.css';
 
-class Body extends React.Component {
-  render() {
-    return (
-      <div>
-        <Banner />
-        <Weather />
-        <Experience />
-        <Special />
-      </div>
-    );
-  }
-}
+const Body: React.FC = () => {
+  return (
+    <div>
+      <Banner />
+      <Weather />
+      <Experience />
+      <Special />
+    </div>
+  );
+};
 export default Body;

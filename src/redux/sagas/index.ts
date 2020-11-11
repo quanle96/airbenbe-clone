@@ -3,8 +3,9 @@ import { put, takeLatest, all, call } from 'redux-saga/effects';
 import WeatherService from '../../service/weather';
 import {
   WeatherAction,
-  WeatherResponse,
+  CurrentWeatherResponse,
   WeatherActionTypes,
+  OneCallWeatherResponse,
 } from '../../types';
 
 function* fetchWeather(actions: WeatherAction) {
@@ -14,18 +15,18 @@ function* fetchWeather(actions: WeatherAction) {
     type: WeatherActionTypes.FETCH_ERROR,
   };
   try {
-    const dataToDay: WeatherResponse = yield call(
+    const dataToDay: CurrentWeatherResponse = yield call(
       weatherService.getCurrent,
       actions.city
     );
 
-    const dataAllDate = yield call(
+    const dataAllDate: OneCallWeatherResponse = yield call(
       weatherService.getByHourlyNDaily,
       dataToDay.coord
     );
     result = {
       type: WeatherActionTypes.FETCH_SUCCESS,
-      dataList: [dataToDay, dataAllDate],
+      data: { ToDay: dataToDay, AllDate: dataAllDate },
     };
   } catch (error) {
     console.log(error.message);

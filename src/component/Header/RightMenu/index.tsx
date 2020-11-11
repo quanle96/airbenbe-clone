@@ -53,13 +53,13 @@ function UserMenu() {
     </div>
   );
 }
-type Props = {
+type IProps = {
   isBorderButton?: boolean;
   color?: string;
   isTran?: boolean;
 };
 
-const MenuButton: React.FC<Props> = (props) => {
+const MenuButton: React.FC<IProps> = (props) => {
   return (
     <button
       className={classNames('menuButton', {
@@ -74,23 +74,21 @@ const MenuButton: React.FC<Props> = (props) => {
   );
 };
 
-class RightMenu extends React.Component<Props> {
-  render() {
-    const color = this.props.isTran ? 'white' : '#484848';
-    return (
-      <div className='flex-row-space-btw RightMenu'>
-        <MenuButton isBorderButton={false} color={color}>
-          <BeComeOwner />
-        </MenuButton>
-        <MenuButton isBorderButton={false} color={color}>
-          <ChangeLanguage />
-        </MenuButton>
-        <MenuButton isBorderButton={true} color={color}>
-          <UserMenu />
-        </MenuButton>
-      </div>
-    );
-  }
-}
+const RightMenu: React.FC<IProps> = (props) => {
+  const color = props.isTran ? 'white' : '#484848';
+  return (
+    <div className='flex-row-space-btw RightMenu'>
+      <MenuButton isBorderButton={false} color={color}>
+        <BeComeOwner />
+      </MenuButton>
+      <MenuButton isBorderButton={false} color={color}>
+        <ChangeLanguage />
+      </MenuButton>
+      <MenuButton isBorderButton={true} color={color}>
+        <UserMenu />
+      </MenuButton>
+    </div>
+  );
+};
 
 export default RightMenu;
