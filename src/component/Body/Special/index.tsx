@@ -4,8 +4,7 @@ import { Row, Col } from 'reactstrap';
 import { IProps } from '../../../types';
 
 import Cell from './Cell';
-
-import './Special.css';
+import { DescriptionContainer, SpecialButton, SpecialWraper } from './style';
 
 type aCard = {
   img: string;
@@ -73,8 +72,8 @@ const Special: React.FC<IProps> = () => {
   ]);
 
   return (
-    <div className='special-wraper'>
-      <div className='description-container'>
+    <SpecialWraper>
+      <DescriptionContainer>
         <div className='text-warper'>
           <h1>
             <div className='title'>Trải nghiệm trực tuyến</div>
@@ -86,21 +85,19 @@ const Special: React.FC<IProps> = () => {
             hoạt động mà không cần rời khỏi nhà.
           </div>
         </div>
-        <div className='button-wraper'>
-          <div>
-            <a href='./' className='special-button'>
-              Khám phá tất cả
-            </a>
-          </div>
-        </div>
-      </div>
+        <SpecialButton>
+          <a href='./' className='special-button'>
+            Khám phá tất cả
+          </a>
+        </SpecialButton>
+      </DescriptionContainer>
       <div className='special-galary'>
         <Row className='grid-wraper'>
           <Card xs='6' data={cards[0]} />
           <RightCards dataList={cards} />
         </Row>
       </div>
-    </div>
+    </SpecialWraper>
   );
 };
 
