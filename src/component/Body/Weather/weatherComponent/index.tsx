@@ -1,76 +1,52 @@
 import React from 'react';
-import { IProps } from '../../../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
+import { IProps } from '../../../../types';
+import {
+  StyledCardTitle,
+  StyledIcon,
+  StyledRefreshBtn,
+  StyledTemp,
+  StyledWtCard,
+  StyledWTWraper,
+} from './style';
+
 export const Icon: React.FC<IProps> = (props) => {
-  const iconUrl = `url('http://openweathermap.org/img/wn/${props.code}@4x.png'`;
-  return <div className='icon' style={{ backgroundImage: iconUrl }} />;
+  const iconUrl = `url('http://openweathermap.org/img/wn/${props.code}@4x.png')`;
+  return <StyledIcon iconUrl={iconUrl} />;
 };
 
 export const Temp: React.FC<IProps> = ({ children }) => {
-  return <div className='temp'>{children}°C</div>;
+  return <StyledTemp>{children}°C</StyledTemp>;
 };
 
 export const Card: React.FC<IProps> = ({ children }) => {
-  return <div className='wtCard'>{children}</div>;
+  return <StyledWtCard>{children}</StyledWtCard>;
 };
 
 export const Title: React.FC<IProps> = ({ children }) => {
-  return <div className='cardTitle'>{children}</div>;
+  return <StyledCardTitle>{children}</StyledCardTitle>;
 };
 
 export const RefreshBtn: React.FC<IProps> = ({ refreshHandle }) => {
   return (
-    <button className='refresh-btn' onClick={refreshHandle}>
+    <StyledRefreshBtn onClick={refreshHandle}>
       <FontAwesomeIcon icon={faSync} />
-    </button>
+    </StyledRefreshBtn>
   );
 };
 
-export const LoadingCards: React.FC = () => {
-  return (
-    <div className='weather-wraper'>
-      <Card>
-        <div
-          className='icon loading-icon'
-          style={{
-            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-          }}
-        />
+export const LoadingCards: React.FC<{ num: number }> = (props) => {
+  const iconUrl = 'url("https://i.imgur.com/GLdqYB2.gif")';
+  const listCard = [];
+  let i;
+  for (i = 0; i < props.num; i++) {
+    listCard.push(
+      <Card key={i}>
+        <StyledIcon iconUrl={iconUrl} />
       </Card>
-      <Card>
-        <div
-          className='icon loading-icon'
-          style={{
-            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-          }}
-        />
-      </Card>
-      <Card>
-        <div
-          className='icon loading-icon'
-          style={{
-            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-          }}
-        />
-      </Card>
-      <Card>
-        <div
-          className='icon loading-icon'
-          style={{
-            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-          }}
-        />
-      </Card>
-      <Card>
-        <div
-          className='icon loading-icon'
-          style={{
-            backgroundImage: 'url("https://i.imgur.com/GLdqYB2.gif")',
-          }}
-        />
-      </Card>
-    </div>
-  );
+    );
+  }
+  return <StyledWTWraper>{listCard}</StyledWTWraper>;
 };

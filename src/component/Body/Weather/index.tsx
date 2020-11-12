@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import DateTimer from '../../../util/dateTime';
-import './Weather.css';
 import { IProps, Daily, WeatherResponse } from '../../../types';
 import {
   Icon,
@@ -13,6 +12,7 @@ import {
   LoadingCards,
 } from './weatherComponent';
 import { GetWeather } from '../../../redux/actions';
+import { StyledWTWraper } from './weatherComponent/style';
 
 interface RootState {
   loading: boolean;
@@ -25,7 +25,7 @@ type WeatherProps = IProps;
 const Weather: React.FC<WeatherProps> = (props) => {
   const [city, setCity] = useState('Ho Chi Minh');
 
-  let RenderElement = <LoadingCards />;
+  let RenderElement = <LoadingCards num={5} />;
 
   const dispatch = useDispatch();
   const getWeather = (city: string = '') => dispatch(GetWeather(city));
@@ -64,7 +64,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
     };
 
     RenderElement = (
-      <div className='weather-wraper'>
+      <StyledWTWraper>
         <Card>
           <Title>Hiện Tại</Title>
           <Icon code={currentWeather.icon} />
@@ -85,7 +85,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
           );
         })}
         <RefreshBtn refreshHandle={refreshHandle} />
-      </div>
+      </StyledWTWraper>
     );
   }
 
